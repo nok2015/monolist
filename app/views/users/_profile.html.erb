@@ -1,7 +1,7 @@
 <% content_for :head do %>
   <title><%= @user.name + "-" + "monolist" %></title>
-  <description><%= @user.name + "さんのモノページです。" + @user.name + "さんの欲しいモノ、持っているモノを表示しています。" %></description>
-<% end %>
+  <meta name="description" content="<%= @user.name + "さんのモノページです。" + @user.name + "さんの欲しいモノ、持っているモノを表示しています。" %></meta>
+  <% end %>
 <div class="user-profile">
   <div class="icon">
     <%= gravatar_for user, size: 100 %>

@@ -1,13 +1,12 @@
+<% content_for :head do %>
+  <title><%= @item.title + "-" + "monolist" %></title>
+  <meta name="description"><%= "「" + @item.title + "」" + "に関する情報です。この商品が欲しい人、すでに持っている人を表示しています。" %></meta>
+<% end %>
 <div class="container">
   <div class="container-inner inner-sm clearfix">
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
-          <% content_for :head do %>
-            <title><%= @item.title + "-" + "monolist" %></title>
-            <description><%= "「" + @item.title + "」" + "に関する情報です。
-            この商品が欲しい人、すでに持っている人を表示しています。" %></description>
-          <% end %>
           <% #TODO 商品イメージ %>
          <% if @item.large_image.present? %>
               <%= image_tag(@item.large_image , alt: @item.title) %>
