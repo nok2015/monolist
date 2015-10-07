@@ -3,13 +3,22 @@
     <div class="item-single-main">
       <div class="image">
         <div class="img-wrap">
+          <% content_for :head do %>
+            <title><%= @item.title + "-" + "monolist" %></title>
+            <description><%= "「" + @item.title + "」" + "に関する情報です。
+            この商品が欲しい人、すでに持っている人を表示しています。" %></description>
+          <% end %>
           <% #TODO 商品イメージ %>
-          <%= image_tag("no-image.png" , alt: @item.title) %>
+         <% if @item.large_image.present? %>
+              <%= image_tag(@item.large_image , alt: @item.title) %>
+            <% else %>
+              <%= image_tag("no-image.png" , alt: @item.title) %>
+            <% end %>
         </div>
       </div>
       <div class="title">
         <% #TODO 商品タイトル %>
-        仮タイトル
+        <%= @item.title %>
       </div>
       <%= render 'action' , item: @item %>
     </div>
@@ -18,18 +27,23 @@
         <h4 class="side-box-title">Haveしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Haveしたユーザー一覧 %>
-
+          <% @have_users.each do |h| %>
+          <%= link_to gravatar_for(h, size: 30), user_path(h) %>
+          <% end %>
         </div>
       </div>
       <div class="side-box">
         <h4 class="side-box-title">Wantしたユーザー</h4>
         <div class="side-box-body">
           <% # TODO Wantしたユーザー一覧 %>
+          <% @want_users.each do |w| %>
+          <%= link_to gravatar_for(w, size: 30), user_path(w) %>
+          <% end %>
         </div>
       </div>
       <div class="text-center">
         <% #TODO 正しいリンク先に %>
-        <%= link_to(image_tag("amazon-button.png", {alt: "Amazon詳細ページへ"}), '#') %>
+        <%= link_to(image_tag("amazon-button.png", {alt: "Amazon詳細ページへ"}), @item.detail_page_url) %>
       </div>
     </div>
   </div>
