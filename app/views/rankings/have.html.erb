@@ -1,0 +1,15 @@
+<h1>Haveランキング</h1>
+<% rank = 1 %>
+<% @top10haves.each do |h| %>
+  <b style="color: #ff0000"><%= "#{rank}位" %></b><br>
+  <% if @all_items.find(h).medium_image.present? %>
+    <%= link_to image_tag(@all_items.find(h).medium_image), @all_items.find(h).detail_page_url %><br> 
+  <% else %>
+    <%= image_tag("no-image.png") %>
+  <% end %>
+  <%= @all_items.find(h).title %><br>
+  <% @all_items.find(h).have_users.each do |u| %>
+  <%= link_to gravatar_for(u, size: 30), user_path(u) %>
+  <% end %><br>
+  <% rank += 1 %><br>
+<% end %>

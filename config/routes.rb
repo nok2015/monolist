@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'ranking/have', to: 'rankings#have'
+
+  get 'ranking/want', to: 'rankings#want'
+
   root 'welcome#index'
 
   get    'signup', to: 'users#new'
